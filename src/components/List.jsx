@@ -1,13 +1,17 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../context/TodoContext'
 import Modal from './Modal'
 
 function List() {
-    const {todos, deleteTodos, updateTodos} = useContext(Context)
+    const {todos, setTodos, deleteTodos, updateTodos, fixedTodo, setFixedTodo} = useContext(Context)
     const [isOpenModal, setIsOpenModal] = useState(false)
     const [inputValue, setInputValue] = useState("")
     const [updateId , setUpdateId] = useState(null)
     
+    useEffect(() => {
+        setFixedTodo(todos)
+    }, [todos])
+
     function handleUpdate(e){
         setIsOpenModal(true)
         setUpdateId(e.target.id)
@@ -23,13 +27,13 @@ function List() {
 
     function handleCompletedBtn(id){
         const findId = todos.find(item => item.id == id)
-        findId.isCompleted =! findId.isCompleted
-        setInputValue([...todos])
+        findId.isCompleted = !findId.isCompleted
+        setFixedTodo([...fixedTodo])
     }
     return (
         <div className="mx-auto w-[400px] mt-5  space-y-3
         ">
-            {todos.map((item, index) => (
+            {fixedTodo.map((item, index) => (
                  
                 <div key={index} className={`p-2 bg-slate-300 rounded-lg flex justify-between ${item.isCompleted ? "opacity-65 line-through" : ""}`}>
                     <div  className={`flex items-center`}>
