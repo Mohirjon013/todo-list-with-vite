@@ -21,22 +21,9 @@ function Form() {
     addTodos(data)
     e.target.reset()
   }
-  // function handleCompletedClick(e){
+
    
     
-  //   if(e.target.){
-  //     setFixedTodo([...todos])
-  //     // console.log([...todos]);
-  //   }
-  //   else if (e.target.matches(".complated-btn")) {
-  //     const filteredArr = todos.filter(item => item.isCompleted == true)
-  //     setTodos(filteredArr)
-  //   }
-  //   else if (e.target.matches(".complated-btn")) {
-  //     const filteredArr = todos.filter(item => item.isCompleted == false)
-  //     setTodos(filteredArr)
-  //   }
-  // }
   
   return (
     <>
